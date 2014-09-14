@@ -1,0 +1,1 @@
+The exponential distribution models a continuous version of the exponential distribution, as could be waiting times. It escribes the time between events in a process in which events occur continuously and independently at a constant average rate *b*. 

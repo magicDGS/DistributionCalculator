@@ -1,0 +1,1 @@
+The poisson distribution models the probability of a given number of events occurring in a fixed interval of time (or space) if these events occur at a *&lambda;* average rate and independently of the time since the last event.
