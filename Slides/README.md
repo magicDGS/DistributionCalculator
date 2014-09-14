@@ -4,4 +4,4 @@ Slides for the Coursera Course "Developing Data Products", presenting the ShinyA
 [DistributionCalculator](https://github.com/magicDGS/DistributionCalculator).
 
 Slides could be open directly in your browser in this
-[link](http://magicdgs.github.io/DistributionCalculatorSlides/index.html).
+[link](http://magicdgs.github.io/DistributionCalculator/Slides/index.html).
