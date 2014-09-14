@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Distribution Calculator</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Distribution Calculator">
+  <meta name="author" content="D Gomez-Sanchez">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Distribution Calculator</h1>
+    <h2>A tool for teach biostatistics</h2>
+    <p>D Gomez-Sanchez<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Presentation</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The Distribution Calculator app was developed to teach some basic statistic 
+concepts used in biology. It includes some common distributions used in 
+biostatistics models and a probablity calculator using the normal distribution
+as example.</p>
+
+<p>The distributions included are the following:</p>
+
+<ul>
+<li>Binomial</li>
+<li>Exponential</li>
+<li>Geometric</li>
+<li>Poisson</li>
+<li>Normal</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Density and CDF curves</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The app draw the densitity curve for each distribution using an independent
+formula in the <code>functions.R</code> script; for continuous distributions, the
+Cumulative Distribution Function (CDF) is also plot.</p>
+
+<p>For example, the Poisson distribution function:</p>
+
+<pre><code class="r">poiss &lt;- function(m, plotLine, plotMean, limits) {
+  m &lt;- as.numeric(m); omega &lt;- 0:1000; probs &lt;- dpois(omega,m)
+  plot(omega,probs,type=&quot;p&quot;, xlab=expression(theta), xlim=limits,
+       main=substitute(paste(&quot;Poisson (&quot;,lambda, &quot;=&quot;, m, &quot;)&quot;, sep=&quot;&quot;)),
+       ylab=substitute(paste(&quot;Pr(&quot;, theta, &quot; | &quot;, lambda, &quot;)&quot;, sep=&quot;&quot;)))
+  if(plotLine) lines(omega, probs)
+  if(plotMean) { range &lt;- (m-trunc(m/2)):(m+trunc(m/2)); meanVal &lt;- m; varVal &lt;- m
+    if(limits[2] %in% range) {coord &lt;- 0;just &lt;- c(0,1)} else {coord &lt;- limits[2];just &lt;- c(1,1)}
+    text(coord, max(probs), adj=just, cex=1.5,
+         substitute(paste(mu, &quot;=&quot;, meanVal, &quot;; &quot;, sigma^2, &quot;=&quot;, varVal)))
+  }}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Features in plot</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>To allow people to understand the concepts of approximations to the other
+distributions and the calculation of the mean and variance, some features as the
+plot limit (in the previous function, <code>limits</code> argument), lines (<code>plotLine</code>) and
+mean/variance (<code>plotMean</code>) could be change:</p>
+
+<p><img src="assets/fig/poiss_plot.png" title="plot of chunk poiss_plot" alt="plot of chunk poiss_plot" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Probability and p-values</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>To explain probabilities and obtain <em>p-value</em>, an example with the normal
+distribution displays the area under the curve for different values. Here I show an example for the upper <em>p-value</em> plot for 1.64:</p>
+
+<p><img src="assets/fig/unnamed-chunk-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Presentation'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Density and CDF curves'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Features in plot'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Probability and p-values'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
